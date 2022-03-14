@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import { PrismicRichText,useSinglePrismicDocument, useFirstPrismicDocument } from '@prismicio/react'
+import * as prismicH from "@prismicio/helpers";
+
 import './App.css';
 
-function App() {
+function App(image) {
+
+  
+  const [document] = useFirstPrismicDocument()
+
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      { document && ( <PrismicRichText field={document.data.heading} /> )}
+      { document && ( <PrismicRichText field={document.data.image} /> )}
+      { document && ( <PrismicRichText field={document.data.para} /> )}
+
+      <div
+      className="blog-avatar"
+      style={{ backgroundImage: `url(${image})` }}
+    />
+
+
+      <div>
+      {document && ( <PrismicRichText field={document.data.title1} /> )}
+      { document && ( <PrismicRichText field={document.data.title2} /> )}
+      </div>
+      
+      {/* <div>
+      <img src={document.data.image}/>
+      </div> */}
+
     </div>
   );
 }

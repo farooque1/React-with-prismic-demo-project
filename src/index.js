@@ -4,9 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { PrismicProvider } from '@prismicio/react'
+import { client } from './Prismic'
+
 ReactDOM.render(
   <React.StrictMode>
+    <PrismicProvider client={client}>
     <App />
+    </PrismicProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
